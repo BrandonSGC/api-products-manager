@@ -1,5 +1,5 @@
 import express from "express";
-import productsRouter from "./router";
+import productsRouter from "./routes/product.routes";
 import db from "./config/db";
 import colors from "colors";
 
@@ -18,10 +18,12 @@ async function connectDB() {
   }
 }
 
-// DB connection.
 connectDB();
 
+// Middlewares
+server.use(express.json());
+
 //Routing.
-server.use("/products", productsRouter);
+server.use("/api/products", productsRouter);
 
 export default server;
