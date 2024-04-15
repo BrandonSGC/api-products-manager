@@ -5,6 +5,8 @@ import {
   getProductsById,
   createProduct,
   updateProduct,
+  updateAvailability,
+  deleteProduct,
 } from "../controllers/product.controller";
 import { handleInputErrors } from "../middlewares";
 
@@ -26,8 +28,8 @@ router.get(
 router.post(
   "/",
   // Validation
-  // Note: body() hace exactamente lo mismo que check(), solo que se
-  // utiliza cuando no se puede usar el async await.
+  // Note: body() does exactly what chech() does, however
+  // you use it when you cannot use async await
   body("name").notEmpty().withMessage("Name cannot be empty"),
   body("price")
     .isNumeric()
@@ -53,6 +55,29 @@ router.put(
   body("availabilty").isBoolean().withMessage("Availability is invalid"),
   handleInputErrors,
   updateProduct
+);
+
+router.patch(
+  "/:id",
+  // We can also vaildate params with param("paramName")
+  param("id")
+    .isInt()
+    .withMessage("Id is invalid")
+    .custom((id) => id >= 0)
+    .withMessage("Id must be positive"),
+  handleInputErrors,
+  updateAvailability
+);
+
+router.delete(
+  "/:id",
+  param("id")
+    .isInt()
+    .withMessage("Id is invalid")
+    .custom((id) => id >= 0)
+    .withMessage("Id must be positive"),
+  handleInputErrors,
+  deleteProduct
 );
 
 export default router;
