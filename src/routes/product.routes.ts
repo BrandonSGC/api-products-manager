@@ -28,7 +28,7 @@ router.get(
 router.post(
   "/",
   // Validation
-  // Note: body() does exactly what chech() does, however
+  // Note: body() does exactly what check() does, however
   // you use it when you cannot use async await
   body("name").notEmpty().withMessage("Name cannot be empty"),
   body("price")
@@ -38,7 +38,7 @@ router.post(
     .withMessage("Price cannot be negative")
     .notEmpty()
     .withMessage("Price cannot be empty"),
-
+  handleInputErrors,
   createProduct
 );
 

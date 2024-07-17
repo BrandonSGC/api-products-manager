@@ -11,8 +11,7 @@ export const handleInputErrors = (
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-
-  // Función por defecto de middlwares para pasar a la 
-  // siguiente función.
+  
+  // Middleware's default function to past to the next function.
   next();
 };
