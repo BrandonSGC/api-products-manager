@@ -34,8 +34,8 @@ router.post(
   body("price")
     .isNumeric()
     .withMessage("Price must be a number")
-    .custom((value) => value >= 0)
-    .withMessage("Price cannot be negative")
+    .custom((value) => value > 0)
+    .withMessage("Price must be greater than 0")
     .notEmpty()
     .withMessage("Price cannot be empty"),
   handleInputErrors,
@@ -44,14 +44,15 @@ router.post(
 
 router.put(
   "/:id",
+  param("id").isInt().withMessage("Id is invalid"),
   body("name").notEmpty().withMessage("Name cannot be empty"),
   body("price")
     .isNumeric()
     .withMessage("Price must be a number")
-    .custom((value) => value >= 0)
-    .withMessage("Price cannot be negative")
     .notEmpty()
-    .withMessage("Price cannot be empty"),
+    .withMessage("Price cannot be empty")
+    .custom((value) => value > 0)
+    .withMessage("Price must be greater than 0"),
   body("availabilty").isBoolean().withMessage("Availability is invalid"),
   handleInputErrors,
   updateProduct

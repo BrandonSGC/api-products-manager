@@ -58,7 +58,6 @@ export const createProduct = async (req: Request, res: Response) => {
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-
     const product = await Product.findByPk(id);
 
     if (!product) {
@@ -96,11 +95,9 @@ export const updateAvailability = async (req: Request, res: Response) => {
       .status(200)
       .json({ message: "Availability updated succesfully", product });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "An error has occurred updating the product's availability...",
-      });
+    res.status(500).json({
+      message: "An error has occurred updating the product's availability...",
+    });
     console.error(
       colors.red("An error has occurred white updating product's availability.")
     );
@@ -117,7 +114,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
     }
 
     await product.destroy();
-    res.status(200).json({ message: "Product deleted succesfully"});
+    res.status(200).json({ message: "Product deleted succesfully" });
   } catch (error) {
     res
       .status(500)

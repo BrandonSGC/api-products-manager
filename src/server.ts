@@ -5,7 +5,7 @@ import colors from "colors";
 
 const server = express();
 
-async function connectDB() {
+export async function connectDB() {
   try {
     await db.authenticate();
     db.sync();
@@ -25,5 +25,8 @@ server.use(express.json());
 
 //Routing.
 server.use("/api/products", productsRouter);
+server.use("/api", (req, res) => {
+  res.json({ msg: "Hi!!!" });
+});
 
 export default server;
