@@ -4,6 +4,7 @@ import db from "./config/db";
 import colors from "colors";
 import cors, { CorsOptions } from "cors";
 import dotenv from "dotenv";
+import morgan from 'morgan';
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ const corsOptions: CorsOptions = {
 connectDB();
 
 // Middlewares
+server.use(morgan('dev'));
 server.use(express.json());
 server.use(cors(corsOptions));
 
