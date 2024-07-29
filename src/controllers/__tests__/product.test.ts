@@ -90,7 +90,7 @@ describe("PUT /api/products/:id", () => {
       .send({
         name: "Redragon Monitor - 32 inches",
         price: 500,
-        availabilty: true,
+        availability: true,
       });
 
     expect(response.statusCode).toBe(400);
@@ -126,7 +126,7 @@ describe("PUT /api/products/:id", () => {
       .send({
         name: "Redragon Monitor - 32 inches",
         price: 650,
-        availabilty: true,
+        availability: true,
       });
 
     expect(response.statusCode).toBe(404);
@@ -140,7 +140,7 @@ describe("PUT /api/products/:id", () => {
     const response = await request(server).put("/api/products/1").send({
       name: "Redragon Monitor - 24 inches",
       price: 625,
-      availabilty: true,
+      availability: true,
     });
 
     expect(response.statusCode).toBe(200);

@@ -53,7 +53,7 @@ router.put(
     .withMessage("Price cannot be empty")
     .custom((value) => value > 0)
     .withMessage("Price must be greater than 0"),
-  body("availabilty").isBoolean().withMessage("Availability is invalid"),
+  body("availability").isBoolean().withMessage("Availability is invalid"),
   handleInputErrors,
   updateProduct
 );
